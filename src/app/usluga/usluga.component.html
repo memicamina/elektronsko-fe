@@ -1,0 +1,70 @@
+<div class="row">
+    <div class="col-sm-12 col-md-4 col-12">
+        <div class="container" style="background:rgba(255,255,255,0.6)">
+            <h3 style="text-align:center;padding-top:5%;font-weight:bold">Slanje zahteva</h3><br/>
+            <form [formGroup]="editForm" novalidate (ngSubmit)="onUpdate()">
+                <div class="form-group">
+                    <label> Email:</label>
+                    <input type="text" class="form-control" formControlName="email"  >
+                </div>
+                 <br/>
+                  <div class="form-group">
+                    <label> Id usluge:</label>
+                    <input type="text" formControlName="idUslugeE"  class="form-control" readonly >
+                </div>
+                <br/>
+                <div class="form-group">
+                    <label> Vrsta:</label>
+                    <input type="text" formControlName="vrstaE"  class="form-control" readonly >
+                </div>
+                 <br/>
+                <div class="form-group">
+                    <label>Cena:</label>
+                    <input type="number" formControlName="cenaE"  class="form-control" readonly>
+                </div>
+                <br/>
+                <div class="form-group">
+                    <label>Datum:</label>
+                   <input  class="form-control" type="date" min="{{today|date:'yyyy-MM-dd'}}" formControlName="datumE" >
+
+                </div>
+                <br/>
+
+                  <div class="form-group">
+
+                    <label>Vreme:</label>
+                    <input type="time" formControlName="vremeE"  class="form-control">
+                </div>
+                <br/>
+                <button type="submit" class="btn btn-primary" style="margin-left:30%;margin-bottom:5%">
+                    <span *ngIf="editLoad"  placeholder="dd-MM-yyyy" class="spinner-border spinner-border-sm mr-1"></span>
+                     Pošalji zahtev
+                </button>
+            </form>
+        </div>
+
+    </div>
+    <div class=" col-sm-12 col-md-8 col-12" style="margin-top: 2%;">
+        <div class="container">
+        <table class="table" style="width: 100%; background-color: pink;">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col" style="text-align: center;">ID Usluge
+                </th>
+                <th scope="col" style="text-align: center;">Vrsta</th>
+                <th scope="col" style="text-align: center;">Cena</th>
+                <th>Zakazivanje</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let usl of usluge">
+                    <th scope="row" style="text-align: center;">{{usl.idUsluge}}</th>
+                    <td style="text-align: center;">{{usl.vrsta}}</td>
+                    <td style="text-align: center;">{{usl.cena}}</td>
+                    <td><button class="btn btn-success" (click)="selectOne(usl)">Zakaži</button></td>
+                
+                </tr>
+            </tbody>
+        </table>  
+    </div>
+ </div>

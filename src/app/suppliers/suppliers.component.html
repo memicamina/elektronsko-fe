@@ -1,0 +1,96 @@
+<div class="row">
+
+    <div class="col-sm-12 col-md-4 col-12">
+    <div class="container" style="background:rgba(255,255,255,0.6)">
+        <h3 style="text-align:center;padding-top:5%;font-weight:bold">Dodavanje dobavljača</h3>
+        <form [formGroup]="createForm" novalidate (ngSubmit)="onCreate()">
+            <div class="form-group"><br/>
+                <label>Naziv:</label>
+                <input class="form-control" formControlName="naziv" type="text">
+            </div>
+            <div *ngIf="createForm.controls['naziv'].invalid && (createForm.controls['naziv'].dirty
+             || createForm.controls['naziv'].touched)" class="alert alert-danger">
+             <div *ngIf="createForm.controls['naziv'].errors.required">
+                  Naziv je neophodan.
+             </div>
+            </div><br/>
+            <div class="form-group">
+                <label>Lokacija dobavljača (ulica, grad):</label>
+                <input class="form-control" formControlName="lokacija" type="text">
+            </div>
+            <div *ngIf="createForm.controls['lokacija'].invalid && (createForm.controls['lokacija'].dirty
+             || createForm.controls['lokacija'].touched)" class="alert alert-danger">
+             <div *ngIf="createForm.controls['lokacija'].errors.required">
+                  Lokacija je neophodna.
+             </div>
+            </div><br/>
+            <button type="submit" class="btn btn-primary" [disabled]="createLoad">
+                <span *ngIf="createLoad" class="spinner-border spinner-border-sm mr-1"></span>
+                 Dodaj
+            </button>
+        </form>
+    </div>
+    <br/>
+    <div class="container" style="background:rgba(255,255,255,0.6)">
+        <h3 style="text-align:center;padding-top:5%;font-weight:bold">Izmena dobavljača</h3>
+        <form [formGroup]="editForm" novalidate (ngSubmit)="onUpdate()">
+            <div class="form-group"><br/>
+                <label>ID dobavljača:</label>
+                <input class="form-control" formControlName="IdDobavljacaE" type="number" readonly>
+            </div><br/>
+            <div class="form-group">
+                <label>Naziv:</label>
+                <input class="form-control" formControlName="nazivE" type="text">
+            </div>
+            <div *ngIf="editForm.controls['nazivE'].invalid && (editForm.controls['nazivE'].dirty
+             || editForm.controls['nazivE'].touched)" class="alert alert-danger">
+             <div *ngIf="editForm.controls['nazivE'].errors.required">
+                  Naziv je neophodan.
+             </div>
+            </div><br/>
+            <div class="form-group">
+                <label>Lokacija dobavljača:</label>
+                <input class="form-control" formControlName="lokacijaE" type="text">
+            </div>
+            <div *ngIf="editForm.controls['lokacijaE'].invalid && (editForm.controls['lokacijaE'].dirty
+             || editForm.controls['lokacijaE'].touched)" class="alert alert-danger">
+             <div *ngIf="editForm.controls['lokacijaE'].errors.required">
+                 Lokacija je neophodna.
+             </div>
+            </div>
+        <br/>
+            <button type="submit" class="btn btn-success" [disabled]="editLoad">
+                <span *ngIf="editLoad" class="spinner-border spinner-border-sm mr-1"></span>
+                 Sačuvaj
+            </button>
+        </form>
+    </div>
+</div>
+
+<div class=" col-sm-12 col-md-8 col-12" style="margin-top: 2%;">
+    <div class="container">
+    <table class="table" style="width: 100%;background-color: pink;">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col" style="text-align: center;">ID
+            </th>
+            <th scope="col" style="text-align: center;">Naziv</th>
+            <th scope="col" style="text-align: center;">Lokacija</th>
+            <th>Izmena</th>
+            <th>Brisanje</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr  *ngFor="let sup of suppliers">
+                <th scope="row" style="text-align: center;">{{sup.IdDobavljaca}}</th>
+                <td style="text-align: center;">{{sup.naziv}}</td>
+                <td style="text-align: center;">{{sup.lokacija}}</td>
+                <td><button class="btn btn-success" (click)="selectSupplier(sup)" >Izmeni</button></td>
+                <td><button class="btn btn-danger" (click)="deleteSelected(sup.IdDobavljaca)">Obriši</button></td>
+            </tr>
+         
+        </tbody>
+      </table> 
+</div>
+
+</div>

@@ -1,0 +1,27 @@
+<h1 class="display-4" style="margin-right: 15%; margin-left: 15%; text-align: center;">Snabdevanje</h1>
+    <div class=" col-sm-12 col-md-12 col-12" style="margin-top: 2%;">
+        <div class="container">
+        <table class="table" style="width: 100%; background-color: pink;">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col" style="text-align: center;">ID Proizvoda
+                </th>
+                <th scope="col" style="text-align: center;">Naziv dobavljaca</th>
+                 <th scope="col" style="text-align: center;">Naziv artikla</th>
+                <th scope="col" style="text-align: center;">cena</th>
+                <th>Kupovina</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let kup of kupovine">
+                    <th scope="row" style="text-align: center;">{{kup.idArtikla}}</th>
+                    <td style="text-align: center;">{{kup.naziv}}</td>
+                    <td style="text-align: center;">{{kup.nazivP}}</td>
+                     <td style="text-align: center;">{{kup.cena}}RSD</td>
+                    <td>  <button type="button" class="btn btn-sm btn-success" >Ubaci u korpu</button></td>
+                
+                </tr>
+            </tbody>
+        </table>  
+    </div>
+ </div>

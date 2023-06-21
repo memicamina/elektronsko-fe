@@ -1,0 +1,115 @@
+<div class="row">
+    <div class="col-sm-12 col-md-4 col-12">
+        <div class="container" style="background:rgba(255,255,255,0.6)">
+            <h3 style="text-align:center;padding-top:5%;font-weight:bold">Dodavanje proizvoda</h3>
+            <form [formGroup]="createForm" novalidate (ngSubmit)="onCreate()">
+                <div class="form-group">
+                    <label> Naziv:</label>
+                    <input type="text" formControlName="naziv" class="form-control">
+                </div>
+           <div  *ngIf="createForm.controls['naziv'].invalid && (createForm.controls['naziv'].dirty
+                 || createForm.controls['naziv'].touched)" class="alert alert-danger">
+                 <div *ngIf="createForm.controls['naziv'].errors.required">
+                        Naziv je neophodan.
+                 </div>
+                 </div>
+                 <br/>
+                <div class="form-group">
+                    <label>Cena:</label>
+                    <input type="number" formControlName="cena"  class="form-control">
+                </div>
+                <br/>
+                <div class="form-group">
+                    <label>Dostupno:</label>
+                    <input type="number" formControlName="dostupnost" class="form-control">
+                </div>
+                <br/>
+                <div class="form-group">
+                    <label> ID dobavljača:</label>
+                    <select class="form-control"  formControlName="IdDobavljaca">
+                        
+                       <option *ngFor="let s of suppliers" [value]="s.IdDobavljaca">{{s.IdDobavljaca}}</option> -->
+                    </select>
+                </div>
+                <br/>
+                <button type="submit" class="btn btn-primary" [disabled]="createLoad">
+                    <span *ngIf="createLoad" class="spinner-border spinner-border-sm mr-1"></span>
+                     Dodaj
+                </button>
+            </form>
+        </div>
+
+<br/>
+        <div class="container" style="background:rgba(255,255,255,0.6)">
+            <h3 style="text-align:center;padding-top:5%;font-weight:bold">Izmena proizvoda</h3>
+            <form [formGroup]="editForm" novalidate (ngSubmit)="onUpdate()">
+                <div class="form-group">
+                    <label>ID proizvoda:</label>
+                    <input type="number" formControlName="IdProizvoda" class="form-control" readonly>
+                </div>
+                <br/>
+                <div class="form-group">
+                    <label>Naziv:</label>
+                    <input type="text" formControlName="nazivE"  class="form-control">
+                </div>
+                <div *ngIf="editForm.controls['nazivE'].invalid && (editForm.controls['nazivE'].dirty
+                 || editForm.controls['nazivE'].touched)" class="alert alert-danger">
+                 <div *ngIf="editForm.controls['nazivE'].errors.required">
+                     Naziv je neophodan.
+                 </div>
+                 </div>
+                 <br/>
+                <div class="form-group">
+                    <label>Cena:</label>
+                    <input type="number" formControlName="cenaE" class="form-control">
+                </div>
+                <br/>
+                <div class="form-group">
+                    <label>Dostupno:</label>
+                    <input type="number" formControlName="dostupnostE" class="form-control">
+                </div>
+                <br/>
+                <div class="form-group">
+                    <label>Snabdevač:</label>
+                    <select class="form-control">
+                    <option *ngFor="let s of suppliers" [value]="s.IdDobavljaca">{{s.IdDobavljaca}}</option> 
+                    </select>
+                </div>
+                <br/>
+                <button type="submit" class="btn btn-success" >
+                    <span *ngIf="editLoad" class="spinner-border spinner-border-sm mr-1"></span> 
+                    Sačuvaj
+                </button>
+            </form>
+        </div>
+
+    </div>
+    <div class=" col-sm-12 col-md-8 col-12" style="margin-top: 2%;">
+        <div class="container">
+        <table class="table" style="width: 100%; background-color: pink;">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col" style="text-align: center;">ID
+                </th>
+                <th scope="col" style="text-align: center;">Naziv</th>
+                <th scope="col" style="text-align: center;">Cena</th>
+                <th scope="col" style="text-align: center;">Dostupno</th>
+                <th scope="col" style="text-align: center;">Snabdevač</th>
+                <th>Izmena</th>
+                <th>Brisanje</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of products">
+                    <th scope="row" style="text-align: center;">{{product.IdProizvoda}}</th>
+                    <td style="text-align: center;">{{product.naziv}}</td>
+                    <td style="text-align: center;">{{product.cena}} RSD</td>
+                    <td style="text-align: center;">{{product.dostupnost}}</td>
+                    <td style="text-align: center;">{{product.IdDobavljaca}}</td>
+                    <td><button class="btn btn-success" (click)="selectOne(product)">Izmeni</button></td>
+                    <td><button class="btn btn-danger" (click)="deleteOne(product.IdProizvoda)">Obriši</button></td>
+                </tr>
+            </tbody>
+        </table>  
+    </div>
+ </div>

@@ -1,0 +1,89 @@
+<div class="row">
+
+<div class="col-sm-12 col-md-4 col-12" style="margin-left:32%;background:rgba(255,255,255,0.6)">
+    <h3 style="text-align:center;padding-top:5%;font-weight:bold">Moj profil</h3>
+    <form [formGroup]="myForm" novalidate (ngSubmit)="onUpdate()">
+        <div class="form-group">
+            <label>Email: </label>
+            <input type="text" class="form-control" formControlName="email" readonly>
+        </div>
+       
+        <div class="form-group">
+            <label>Ime: </label>
+            <input type="text" class="form-control" formControlName="ime">
+        </div>
+        <div *ngIf="myForm.controls['ime'].invalid && (myForm.controls['ime'].dirty
+                 || myForm.controls['ime'].touched)" class="alert alert-danger">
+                 <div *ngIf="myForm.controls['ime'].errors.required">
+                     Ime je neophodno.
+                 </div>
+                </div>
+        <div class="form-group">
+            <label>Prezime: </label>
+            <input type="text" class="form-control" formControlName="prezime">
+        </div>
+        <div *ngIf="myForm.controls['prezime'].invalid && (myForm.controls['prezime'].dirty
+                 || myForm.controls['prezime'].touched)" class="alert alert-danger">
+                 <div *ngIf="myForm.controls['prezime'].errors.required">
+                     Prezime je neophodno.
+                 </div>
+                </div>
+
+                 <div class="form-group">
+            <label>Adresa(Ulica,grad,ptt): </label>
+            <input type="text" class="form-control" formControlName="adresa">
+        </div>
+        <div *ngIf="myForm.controls['adresa'].invalid && (myForm.controls['adresa'].dirty
+                 || myForm.controls['adresa'].touched)" class="alert alert-danger">
+                 <div *ngIf="myForm.controls['adresa'].errors.required">
+                     Adresa je neophodno.
+                 </div>
+                </div>
+        <div class="form-group">
+            <label>Telefon: </label>
+            <input type="text" class="form-control" formControlName="telefon">
+        </div>
+        <div *ngIf="myForm.controls['telefon'].invalid && (myForm.controls['telefon'].dirty
+                 || myForm.controls['telefon'].touched)" class="alert alert-danger">
+                 <div *ngIf="myForm.controls['telefon'].errors.required">
+                     Telefon je neophodan.
+                 </div>
+                </div>
+        <button type="submit" class="btn btn-info" style="margin-left:30%;margin-bottom:5%;margin-top:5%;">
+            <span *ngIf="myLoad" class="spinner-border spinner-border-sm mr-1"></span>
+            Sačuvaj izmene
+        </button>
+    </form>
+    <hr>
+</div>
+
+    <div class=" col-sm-12 col-md-12 col-12" style="margin-top: 2%;">
+        <div class="container">
+        <table class="table" style="width: 100%; background-color: pink;">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col" style="text-align: center;">ID Zahteva
+                </th>
+                 
+                  <th scope="col" style="text-align: center;">Status</th>
+                  <th scope="col" style="text-align: center;">ID Usluge</th>
+                <th scope="col" style="text-align: center;">Datum</th>
+                 <th scope="col" style="text-align: center;">Vreme</th>
+          
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let zah of zahtevi" >
+                    <th scope="row" style="text-align: center;">{{zah.idZahteva}}</th>
+                        <td style="text-align: center;">{{zah.status}}</td>
+                    <td style="text-align: center;">{{zah.idUsluge}}</td>
+                    <td style="text-align: center;">{{zah.datum}}</td>
+                    <td style="text-align: center;">{{zah.vreme}}</td>
+                   
+                
+                </tr>
+            </tbody>
+        </table>  
+    </div>
+ </div>
+</div>

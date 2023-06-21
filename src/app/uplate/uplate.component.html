@@ -1,0 +1,29 @@
+<h1 class="display-4" style="margin-right: 15%; margin-left: 15%; text-align: center;">Potvrda kupovine</h1>
+    <div class=" col-sm-12 col-md-12 col-12" style="margin-top: 2%;">
+        <div class="container">
+        <table class="table" style="width: 100%; background-color: pink;">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col" style="text-align: center;">ID Kupovine
+                </th>
+                <th scope="col" style="text-align: center;">Datum</th>
+                 <th scope="col" style="text-align: center;">Ukupna cena</th>
+                <th scope="col" style="text-align: center;">Email</th>
+                 <th scope="col" style="text-align: center;">Uplaćeno</th>
+                <th>Potvda Uplate</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let por of porudzbine">
+                    <th scope="row" style="text-align: center;">{{por.IdPorudzbine}}</th>
+                    <td style="text-align: center;">{{por.datumP}}</td>
+                    <td style="text-align: center;">{{por.ukupnaCena}}RSD</td>
+                     <td style="text-align: center;">{{por.email}}</td>
+                          <td style="text-align: center;">{{por.uplaceno}}</td>
+                    <td>  <button type="button" class="btn btn-sm btn-success" (click)="potvrdiUplatu(por)">Potvrdi uplatu</button></td>
+                
+                </tr>
+            </tbody>
+        </table>  
+    </div>
+ </div>

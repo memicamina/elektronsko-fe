@@ -1,0 +1,29 @@
+.logo {
+  height: 80px;
+  width: 100px;
+  margin-right: 50px;
+}
+
+.text {
+  margin-right: auto;
+}
+
+.cart-container {
+  display: inline-block;
+  cursor: pointer;
+  margin-left: 1%;
+  padding: 0 0.2% 0.1%;
+  border-radius: 5%;
+  text-transform: capitalize;
+  color: red;
+}
+
+.cart-container:hover {
+  background-color: grey;
+  color: white;
+}
+
+.cart-icon:hover {
+  background-color: grey;
+  color: white;
+}

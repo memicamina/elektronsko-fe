@@ -1,0 +1,87 @@
+<div class="row">
+    <div class="col-sm-12 col-md-4 col-12">
+        <div class="container" style="background:rgba(255,255,255,0.4)">
+            <h3 style="text-align:center;padding-top:5%;font-weight:bold">Dodavanje usluga</h3>
+            <form [formGroup]="createForm" novalidate (ngSubmit)="onCreate()">
+                <div class="form-group">
+                    <label > Vrsta:</label>
+                    <input type="text" formControlName="vrsta" class="form-control">
+                </div>
+           <div  *ngIf="createForm.controls['vrsta'].invalid && (createForm.controls['vrsta'].dirty
+                 || createForm.controls['vrsta'].touched)" class="alert alert-danger">
+                 <div *ngIf="createForm.controls['vrsta'].errors.required">
+                        Vrsta je neophodan.
+                 </div>
+                 </div>
+                 <br/>
+                <div class="form-group">
+                    <label >Cena:</label>
+                    <input type="number" formControlName="cena"  class="form-control">
+                </div>
+             
+                <button type="submit" class="btn btn-primary" [disabled]="createLoad">
+                    <span *ngIf="createLoad" class="spinner-border spinner-border-sm mr-1"></span>
+                     Dodaj
+                </button>
+            </form>
+        </div>
+
+<br/>
+        <div class="container" style="background:rgba(255,255,255,0.4)">
+            <h3 style="text-align:center;padding-top:5%;font-weight:bold">Izmena usluge</h3>
+            <form [formGroup]="editForm" novalidate (ngSubmit)="onUpdate()">
+                <div class="form-group">
+                    <label>ID usluge:</label>
+                    <input type="number" formControlName="idUsluge" class="form-control" readonly>
+                </div>
+                <br/>
+                <div class="form-group">
+                    <label>Naziv:</label>
+                    <input type="text" formControlName="vrstaE"  class="form-control">
+                </div>
+                <div *ngIf="editForm.controls['vrstaE'].invalid && (editForm.controls['vrstaE'].dirty
+                 || editForm.controls['vrstaE'].touched)" class="alert alert-danger">
+                 <div *ngIf="editForm.controls['vrstaE'].errors.required">
+                     Vrsta je neophodan.
+                 </div>
+                 </div>
+                 <br/>
+                <div class="form-group">
+                    <label>Cena:</label>
+                    <input type="number" formControlName="cenaE" class="form-control">
+                </div>
+                <br/>
+            
+                <button type="submit" class="btn btn-success" >
+                    <span *ngIf="editLoad" class="spinner-border spinner-border-sm mr-1"></span> 
+                    Sačuvaj
+                </button>
+            </form>
+        </div>
+
+    </div>
+    <div class=" col-sm-12 col-md-8 col-12" style="margin-top: 2%;">
+        <div class="container">
+        <table class="table" style="width: 100%; background-color: pink;">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col" style="text-align: center;">ID usluge
+                </th>
+                <th scope="col" style="text-align: center;">Vrsta</th>
+                <th scope="col" style="text-align: center;">Cena</th>
+                <th>Izmena</th>
+                <th>Brisanje</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let us of usluge">
+                    <th scope="row" style="text-align: center;">{{us.idUsluge}}</th>
+                    <td style="text-align: center;">{{us.vrsta}}</td>
+                    <td style="text-align: center;">{{us.cena}} RSD</td>
+                    <td><button class="btn btn-success" (click)="selectOne(us)">Izmeni</button></td>
+                    <td><button class="btn btn-danger" (click)="deleteOne(us.idUsluge)">Obriši</button></td>
+                </tr>
+            </tbody>
+        </table>  
+    </div>
+ </div>

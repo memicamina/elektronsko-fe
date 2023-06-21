@@ -1,0 +1,9 @@
+.list-inline-item {
+  font-size: 150%;
+  margin-right: 4.5%;
+  cursor: pointer;
+}
+
+.page-footer {
+  height: 70px;
+}

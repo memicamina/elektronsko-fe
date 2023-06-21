@@ -1,0 +1,24 @@
+<main role="main">
+    <div class="jumbotron">
+      <div class="container">
+        <h3 class="display-4" style="margin-right: 15%; margin-left: 15%; text-align: center;">Dobrodošli na zvanični sajt Frizerskog salona!</h3>
+       <p style="margin-right: 25%; margin-left: 25%;"><b>Naravno da već i sve ptičice na granama znaju da je frizura važna. 
+           I to ne onako bez veze važna, već veoma, baš, baš V A Ž N A. Vaša frizura 
+           je na vašoj glavi, a kada ste na sastanku ili se sa nekim upoznajete, pričate 
+           ili jednostavno idete ulicom, ona je veoma upadljiva. Ona govori dosta o vama. 
+           O tome da li ste uredni, kakav je vaš stil, volite li da eksperimentišete,
+            pratite li trendove, da li ste dosledni sebi i svojim navikama…</b></p>
+
+            
+      </div>
+
+      
+  <ul class="list-group center" style="width: 50%; margin-left:25%;">
+       <li class="list-group-item bg-success text-white">Dostupni kuponi: </li>
+         <li *ngFor="let c of kuponi" class="list-group-item">Kod kupona: <strong>{{c.kod_kupona}}</strong> - Popust: {{c.popust}}% - Cena (uslov): {{c.stanje}} RSD</li>
+    </ul>
+     
+    </div>    
+</main>
+
+  

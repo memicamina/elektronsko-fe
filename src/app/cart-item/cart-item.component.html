@@ -1,0 +1,41 @@
+<div class="row my-1 text-capitalize text-center">
+   
+    <div class="col-10 mx-auto col-lg-2 ">
+      <span class="d-lg-none">artikal :</span><strong> {{item.nazivProizvoda}}</strong>
+    </div>
+    <div class="col-10 mx-auto col-lg-2 ">
+      <strong>
+        <span class="d-lg-none">cena :</span>{{item.cena}} RSD
+      </strong>
+    </div>
+    <div class="col-10 mx-auto col-lg-2 my-2 my-lg-0 ">
+      <div class="d-flex justify-content-center">
+        <div>
+          <span
+            class="btn btn-black mx-1"
+                (click)="onDecrease(item)"
+          >
+            -
+          </span>
+          <span class="btn btn-black mx-1">{{item.kolicina}}</span>
+          <span
+            class="btn btn-black mx-1"
+             (click)="onIncrease(item)"
+            >
+            +
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-10 mx-auto col-lg-2 ">
+      <div class="trash-icon">
+     <button class="btn btn-outline-danger text-uppercase mb-3 px-5" type="button" (click)="onRemove(item)">
+          ukloni
+          </button>  
+      </div>
+    </div>
+
+    <div class="col-10 mx-auto col-lg-2">
+      <strong>{{item.ukupno}} RSD</strong>
+  </div>
+  </div>

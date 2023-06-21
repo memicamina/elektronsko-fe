@@ -1,0 +1,32 @@
+<h1 class="display-4" style="margin-right: 15%; margin-left: 15%; text-align: center;">Prikaz zahteva</h1>
+    <div class=" col-sm-12 col-md-12 col-12" style="margin-top: 2%;">
+        <div class="container">
+        <table class="table" style="width: 100%; background-color: pink;">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col" style="text-align: center;">ID Zahteva
+                </th>
+                 <th scope="col" style="text-align: center;">Id Kursa</th>
+                  <th scope="col" style="text-align: center;">Naziv kursa</th>
+                <th scope="col" style="text-align: center;">email</th>
+                <th scope="col" style="text-align: center;">Status</th>
+                <th>Odobri</th>
+                <th>Izbriši</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let zah of zahtevi" >
+                    <th scope="row" style="text-align: center;">{{zah.idZahteva}}</th>
+                      <td style="text-align: center;">{{zah.idKursa}}</td>
+                        <td style="text-align: center;">{{zah.naziv}}</td>
+                    <td style="text-align: center;">{{zah.email}}</td>
+                    <td style="text-align: center;">{{zah.status}}</td>
+                   
+                    <td> <button type="button" class="btn btn-sm btn-success" (click)="odobriZahtev(zah)">Odobri</button></td>
+                    <td> <button type="button" class="btn btn-sm btn-danger" (click)="izbrisiZahtev(zah)">Izbrisi</button></td>
+                
+                </tr>
+            </tbody>
+        </table>  
+    </div>
+ </div>

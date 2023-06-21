@@ -1,0 +1,54 @@
+
+       <div class=" col-sm-12 col-md-12 col-12" style="margin-top: 2%;">
+        <div class="container">
+        <table class="table" style="width: 100%; background-color: pink;">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col" style="text-align: center;">ID Kursa
+                </th>
+                <th scope="col" style="text-align: center;">Naziv</th>
+                <th scope="col" style="text-align: center;">Mentor</th>
+                  <th scope="col" style="text-align: center;">Datum</th>
+                    <th scope="col" style="text-align: center;">Vreme</th>
+                      <th scope="col" style="text-align: center;">Opis</th>
+                <th>Zakazivanje</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let ob of obuke">
+                    <th scope="row" style="text-align: center;">{{ob.IdKursa}}</th>
+                    <td style="text-align: center;">{{ob.naziv}}</td>
+                    <td style="text-align: center;">{{ob.mentor}}</td>
+                    <td style="text-align: center;">{{ob.datum}}</td>
+                    <td style="text-align: center;">{{ob.vreme}}</td>
+                    <td style="text-align: center;">{{ob.opis}}</td>
+                    <td><button class="btn btn-success" (click)="selectOne(ob)">Posalji zahtev</button></td>
+                
+                </tr>
+            </tbody>
+        </table>  
+    </div>
+ </div>
+
+     <div class="row">
+    <div class="col-sm-12 col-md-4 col-12" style="margin-left:30%">
+        <div class="container" style="background:rgba(255,255,255,0.6)">
+            <h3 style="text-align:center;padding-top:5%;font-weight:bold">Slanje zahteva</h3><br/>
+            <form [formGroup]="editForm" novalidate (ngSubmit)="onUpdate()">
+                <div class="form-group">
+                    <label> Email:</label>
+                    <input type="text" class="form-control" formControlName="email"  >
+                </div>
+                 <br/>
+                  <div class="form-group">
+                    <label> Id kursa:</label>
+                    <input type="text" formControlName="idKursaE"  class="form-control" readonly >
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-left:30%;margin-bottom:5%;margin-top:5%;"  >
+                    <span *ngIf="editLoad"  placeholder="dd-MM-yyyy" class="spinner-border spinner-border-sm mr-1"></span>
+                     Pošalji zahtev
+                </button>
+            </form>
+        </div>
+
+    </div>

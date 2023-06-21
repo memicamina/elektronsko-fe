@@ -1,0 +1,176 @@
+<div class="row">
+    <div class="col-sm-12 col-md-4 col-12">
+        <div class="container"  style="background:rgba(255,255,255,0.6)">
+            <h3 style="text-align:center;padding-top:5%;font-weight:bold">Dodavanje frizera</h3>
+            <form [formGroup]="createForm" novalidate (ngSubmit)="onCreate()">
+                <div class="form-group">
+                    <label>Ime:</label>
+                    <input class="form-control" formControlName="ime" type="text">
+                </div>
+                  <div  *ngIf="createForm.controls['ime'].invalid && (createForm.controls['ime'].dirty
+                 || createForm.controls['ime'].touched)" class="alert alert-danger">
+                 <div *ngIf="createForm.controls['ime'].errors.required">
+                  Ime je neophodno.
+                 </div>               
+                 </div><br/>
+                <div class="form-group">
+                    <label>Prezime:</label>
+                    <input class="form-control" formControlName="prezime" type="text">
+                </div>
+               <div  *ngIf="createForm.controls['prezime'].invalid && (createForm.controls['prezime'].dirty
+                 || createForm.controls['prezime'].touched)" class="alert alert-danger">
+                 <div *ngIf="createForm.controls['prezime'].errors.required">
+                 
+                     Prezime je neophodno.
+                 </div>
+                 </div><br/>
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input class="form-control" formControlName="email" type="text">
+                </div>
+                   <div  *ngIf="createForm.controls['email'].invalid && (createForm.controls['email'].dirty
+                 || createForm.controls['email'].touched)" class="alert alert-danger">
+                 <div *ngIf="createForm.controls['email'].errors.required"> 
+                     Email je neophodna.
+                 </div>
+                 </div><br/>
+                 <div class="form-group">
+                    <label>Lozinka:</label>
+                    <div class="d-flex justify-content-between">
+                    <input  class="form-control" formControlName="lozinka"  id="lozinkaU">
+                </div>
+            </div>
+                <div *ngIf="createForm.controls['lozinka'].invalid && (createForm.controls['lozinka'].dirty
+                 || createForm.controls['lozinka'].touched)" class="alert alert-danger">
+                 <div *ngIf="createForm.controls['lozinka'].errors.required">
+                     Lozinka je neophodna.
+                 </div>
+                </div><br/>
+                <div class="form-group">
+                    <label>Telefon:</label>
+                    <input class="form-control" formControlName="telefon" type="text">
+                </div>
+              <div  *ngIf="createForm.controls['telefon'].invalid && (createForm.controls['telefon'].dirty
+                 || createForm.controls['telefon'].touched)" class="alert alert-danger">
+                 <div *ngIf="createForm.controls['telefon'].errors.required">
+                     Telefon je neophodan.
+                </div>
+                </div><br/>
+                <div class="form-group">
+                    <label>Plata:</label>
+                    <input class="form-control" formControlName="plata" type="number">
+                </div><br/>
+                <div class="form-group">
+                    <label>Staž:</label>
+                    <input class="form-control" formControlName="staz" type="number">
+                </div><br/>
+                <button type="submit" class="btn btn-primary" [disabled]="createLoad">
+                    <span *ngIf="createLoad" class="spinner-border spinner-border-sm mr-1"></span> 
+                     Dodaj
+                </button>
+            </form>
+     </div>
+     <br/>
+     <div class="container"  style="background:rgba(255,255,255,0.6)">
+        <h3 style="text-align:center;padding-top:5%;font-weight:bold">Izmena frizera</h3>
+        <form [formGroup]="editForm" novalidate (ngSubmit)="onUpdate()">
+            <div class="form-group">
+                <label>ID:</label>
+                <input class="form-control" formControlName="idFrizera" type="number" readonly>
+            </div><br/>
+            <div class="form-group">
+                <label>Ime:</label>
+                <input class="form-control" formControlName="imeE" type="text">
+            </div>
+            <div *ngIf="editForm.controls['imeE'].invalid && (editForm.controls['imeE'].dirty
+                 || editForm.controls['imeE'].touched)" class="alert alert-danger">
+                 <div *ngIf="editForm.controls['imeE'].errors.required">
+                 
+                 Ime je neophodno.
+             </div>
+             </div><br/>
+            <div class="form-group">
+                <label>Prezime:</label>
+                <input class="form-control" formControlName="prezimeE" type="text">
+            </div>
+            <div *ngIf="editForm.controls['prezimeE'].invalid && (editForm.controls['prezimeE'].dirty
+                 || editForm.controls['prezimeE'].touched)" class="alert alert-danger">
+                 <div *ngIf="editForm.controls['prezimeE'].errors.required">
+                 
+                 Prezime je neophodno.
+             </div>
+             </div><br/>
+            <div class="form-group">
+                <label>Email:</label>
+                <input class="form-control" formControlName="emailE" type="text">
+            </div>
+             <div *ngIf="editForm.controls['emailE'].invalid && (editForm.controls['emailE'].dirty
+                 || editForm.controls['emailE'].touched)" class="alert alert-danger">
+                 <div *ngIf="editForm.controls['emailE'].errors.required">
+                 
+                 Email je neophodna.
+             </div>
+             </div><br/>
+           <br/>
+            <div class="form-group">
+                <label>Telefon:</label>
+                <input class="form-control" formControlName="telefonE" type="text">
+            </div>
+             <div *ngIf="editForm.controls['telefonE'].invalid && (editForm.controls['telefonE'].dirty
+                 || editForm.controls['telefonE'].touched)" class="alert alert-danger">
+                 <div *ngIf="editForm.controls['telefonE'].errors.required">
+                 
+                 Telefon je neophodan.
+             </div>
+             </div><br/>
+            <div class="form-group">
+                <label>Plata:</label>
+                <input class="form-control" formControlName="plataE" type="number">
+            </div><br/>
+            <div class="form-group">
+                <label>Staž:</label>
+                <input class="form-control" formControlName="stazE" type="number">
+            </div><br/>
+            <button type="submit" class="btn btn-success">
+             <span *ngIf="editLoad" class="spinner-border spinner-border-sm mr-1"></span> 
+                Sačuvaj
+            </button>
+        </form>
+    </div>
+</div>
+
+    <div class="col-sm-12 col-md-8 col-12" style="margin-top: 2%;">
+        <div class="container">
+        <table class="table" style="width: 100%; background-color: pink;">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col" style="text-align: center;">ID
+                </th>
+                <th scope="col" style="text-align: center;">Ime</th>
+                <th scope="col" style="text-align: center;">Prezime</th>
+                <th scope="col" style="text-align: center;">Email</th>
+                <!-- <th scope="col" style="text-align: center;">Lozinka</th> -->
+                <th scope="col" style="text-align: center;">Telefon</th>
+                <th scope="col" style="text-align: center;">Plata</th>
+                <th scope="col" style="text-align: center;">Staž</th>
+                <th>Izmena</th>
+                <th>Brisanje</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let friseur of friseurs">
+                    <th scope="row" style="text-align: center;">{{friseur.idFrizera}}</th>
+                    <td style="text-align: center;">{{friseur.ime}}</td>
+                    <td style="text-align: center;">{{friseur.prezime}}</td>
+                    <td style="text-align: center;">{{friseur.email}}</td>
+                    <td style="text-align: center;">{{friseur.telefon}}</td>
+                    <td style="text-align: center;">{{friseur.plata}}</td>
+                    <td style="text-align: center;">{{friseur.staz}}</td>
+                    <td><button class="btn btn-success" (click)="selectOne(friseur)">Izmeni</button></td>
+                    <td><button class="btn btn-danger" (click)="deleteOne(friseur.idFrizera)">Obriši</button></td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+   </div>
+</div>

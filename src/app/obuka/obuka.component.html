@@ -1,0 +1,71 @@
+<div class="row">
+
+    <div class=" col-sm-12 col-md-12 col-12" style="margin-top: 2%;">
+        <div class="container">
+        <table class="table" style="width: 100%; background-color: pink;">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col" style="text-align: center;">ID Obuke
+                </th>
+                <th scope="col" style="text-align: center;">Naziv</th>
+                <th scope="col" style="text-align: center;">Mentor</th>
+                <th scope="col" style="text-align: center;">Datum</th>
+                <th scope="col" style="text-align: center;">Vreme</th>
+                <th scope="col" style="text-align: center;">Opis</th>
+                <th>Izbriši</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let ob of obuke">
+                    <th scope="row" style="text-align: center;">{{ob.IdKursa}}</th>
+                    <td style="text-align: center;">{{ob.naziv}}</td>
+                    <td style="text-align: center;">{{ob.mentor}}</td>
+                    <td style="text-align: center;">{{ob.datum}}</td>
+                    <td style="text-align: center;">{{ob.vreme}}</td>
+                    <td style="text-align: center;">{{ob.opis}}</td>
+                    <td><button class="btn btn-danger" (click)="deleteOne(ob.IdKursa)">Izbriši</button></td>
+                
+                </tr>
+            </tbody>
+        </table>  
+    </div>
+ </div>
+
+  <div class="col-sm-12 col-md-4 col-12" style="margin-left:35%; margin-top:50px" >
+        <div class="container" style="background:rgba(255,255,255,0.6)">
+            <h3 style="text-align:center;padding-top:5%;font-weight:bold">Dodavanje novog kursa</h3><br/>
+            <form [formGroup]="editForm" novalidate (ngSubmit)="kreirajKurs()">
+            <div class="form-group">
+                    <label > Naziv:</label>
+                    <input type="text" class="form-control" formControlName="naziv"  >
+                </div>
+            <br/>
+                <div class="form-group">
+                    <label > Ime i prezime mentora:</label>
+                    <input type="text" class="form-control" formControlName="mentor"  >
+                </div>
+                <br/>
+                <div class="form-group">
+                    <label >Datum:</label>
+                   <input  class="form-control" type="date" min="{{today|date:'yyyy-MM-dd'}}" formControlName="datumE" >
+                </div>
+                <br/>
+
+                  <div class="form-group">
+                    <label>Vreme:</label>
+                    <input type="time" formControlName="vremeE"  class="form-control">
+                </div>
+                <br/>
+                 <div class="form-group">
+                    <label > Opis:</label>
+                    <input type="textarea" formControlName="opisE"  class="form-control" >
+                </div>
+                <br/>
+                <button type="submit" class="btn btn-success" style="margin-left:30%;margin-bottom:5%" >
+                    <span *ngIf="editLoad"  placeholder="dd-MM-yyyy" class="spinner-border spinner-border-sm mr-1"></span>
+                     Dodaj novu obuku
+                </button>
+            </form>
+        </div>
+
+    </div>

@@ -1,0 +1,118 @@
+<div class="row">
+    <div class="col-sm-12 col-md-4 col-12">
+    <div class="container"  style="background:rgba(255,255,255,0.6)">
+        <h3 style="text-align:center;padding-top:5%;font-weight:bold">Dodavanje kupona</h3>
+        <form [formGroup]="createForm" novalidate (ngSubmit)="onCreate()">
+            <div class="form-group">
+                <label>Kod kupona:</label>
+                <input class="form-control" formControlName="kod_kupona" type="text" >
+            </div>
+            <div *ngIf="createForm.controls['kod_kupona'].invalid && (createForm.controls['kod_kupona'].dirty
+             || createForm.controls['kod_kupona'].touched)" class="alert alert-danger">
+             <div *ngIf="createForm.controls['kod_kupona'].errors.required">
+                 Kod je neophodan.
+             </div>
+            </div>
+            <br/>
+            <div class="form-group">
+                <label >Uslov (cena):</label>
+                <input class="form-control" formControlName="stanje" type="number">
+            </div>
+            <div *ngIf="createForm.controls['stanje'].invalid && (createForm.controls['stanje'].dirty
+             || createForm.controls['stanje'].touched)" class="alert alert-danger">
+             <div *ngIf="createForm.controls['stanje'].errors.required">
+                Uslov je neophodan.
+                 </div>
+                 </div>
+                  <br/>
+                 <div class="form-group">
+                    <label >Validan:</label>
+                    <select class="form-control" formControlName="validan">
+                        <option *ngFor="let c of choices" [ngValue]="c.value">
+                            {{c.ind}}
+                        </option>
+                    </select>
+                </div>
+                 <br/>
+                <div class="form-group">
+                <label>Popust:</label>
+                <input class="form-control" formControlName="popust" type="number">
+            </div> 
+             <br/>
+            <button type="submit" class="btn btn-primary" [disabled]="createLoad" style="margin-left:35%;margin-bottom:5%" >
+                <span *ngIf="createLoad" class="spinner-border spinner-border-sm mr-1"></span>
+                 Dodaj
+            </button>
+        </form>
+ </div>
+
+
+ <div class="container" style="background:rgba(255,255,255,0.6)">
+    <h3 style="text-align:center;padding-top:5%;font-weight:bold">Izmena kupona</h3>
+    <form [formGroup]="editForm" novalidate (ngSubmit)="onUpdate()">
+        <div class="form-group">
+            <label>Kod kupona:</label>
+            <input class="form-control" formControlName="kod_kuponaE" type="text" readonly>
+        </div>
+         <br/>
+        <div class="form-group">
+            <label>Uslov (cena):</label>
+            <input class="form-control" formControlName="stanjeE" type="number">
+        </div>
+        <div *ngIf="editForm.controls['stanjeE'].invalid && (editForm.controls['stanjeE'].dirty
+         || editForm.controls['stanjeE'].touched)" class="alert alert-danger">
+         <div *ngIf="editForm.controls['stanjeE'].errors.required">
+            Datum je neophodan.
+             </div>
+             </div>
+              <br/>
+             <div class="form-group">
+                <label>Validan:</label>
+                <select class="form-control" formControlName="Evalidan">
+                    <option *ngFor="let c of choices" [ngValue]="c.value">
+                        {{c.ind}}
+                    </option>
+                </select>
+            </div>
+             <br/>
+            <div class="form-group">
+            <label>Popust:</label>
+            <input class="form-control" formControlName="popustE" type="number">
+        </div> 
+         <br/>
+        <button type="submit" class="btn btn-info" [disabled]="editLoad" style="margin-left:35%;margin-bottom:5%" >
+            <span *ngIf="editLoad" class="spinner-border spinner-border-sm mr-1"></span>
+            Sačuvaj
+        </button>
+    </form>
+</div>
+</div>
+    <div class="col-sm-12 col-md-8 col-12" style="margin-top: 2%;">
+        <div class="container">
+        <table class="table" style="width: 100%;">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col" style="text-align: center;">Kod
+                </th>
+                <th scope="col" style="text-align: center;">Uslov</th>
+                <th scope="col" style="text-align: center;">Validan</th>
+                <th scope="col" style="text-align: center;">Popust</th>
+                <th>Izmena</th>
+                <th>Brisanje</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let coup of kuponi">
+                    <th scope="row" style="text-align: center;">{{coup.kod_kupona}}</th>
+                    <td style="text-align: center;">{{coup.stanje}} RSD</td>
+                    <td style="text-align: center;">{{coup.validan}}</td>
+                    <td style="text-align: center;">{{coup.popust}} %</td>
+                    <td><button class="btn btn-success" (click)="selectCoupon(coup)">Izmeni</button></td>
+                    <td><button class="btn btn-danger" (click)="deleteSelected(coup.kod_kupona)">Obriši</button></td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+   </div>
+
+</div>

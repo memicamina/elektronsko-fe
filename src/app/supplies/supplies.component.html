@@ -1,0 +1,125 @@
+<div class="row">
+
+    <div class="col-sm-12 col-md-4 col-12">
+        <div class="container" style="background:rgba(255,255,255,0.6)">
+            <h3 style="text-align:center;padding-top:5%;font-weight:bold">Dodavanje</h3>
+            <form  [formGroup]="createForm" novalidate (ngSubmit)="onCreate()">
+                              <div class="form-group">
+                    <label >Naziv dobavljaca:</label>
+                    <select class="form-control" formControlName="nazivD">
+                      <option *ngFor="let s of suppliers" [ngValue]="s.naziv">
+                        {{s.naziv}}
+                      </option>
+                    </select>
+                </div><br/>
+                <div class="form-group">
+                    <label>Naziv artikla:</label>
+                    <input class="form-control" formControlName="naziv" type="text">
+                </div>
+                <div *ngIf="createForm.controls['naziv'].invalid && (createForm.controls['naziv'].dirty
+                || createForm.controls['naziv'].touched)" class="alert alert-danger">
+                <div *ngIf="createForm.controls['naziv'].errors.required">
+                    Artikal je neophodan.
+                 </div>
+                </div><br/>
+                <div class="form-group">
+                    <label>Količina:</label>
+                    <input class="form-control" formControlName="kolicina" type="number">
+                </div><br/>
+                <div class="form-group">
+                    <label>Datum:</label>
+                    <input class="form-control" formControlName="datum" type="text" readonly>
+                </div><br/>
+                <div class="form-group">
+                    <label>Cena:</label>
+                    <input type="number" formControlName="cena"  class="form-control" >
+                </div><br/>
+                <button type="submit" class="btn btn-primary" [disabled]="createLoad">
+                    <span *ngIf="createLoad" class="spinner-border spinner-border-sm mr-1"></span>
+                     Dodaj
+                </button>
+            </form>
+        </div>
+
+
+        <div class="container" style="background:rgba(255,255,255,0.6)">
+            <h3 style="text-align:center;padding-top:5%;font-weight:bold">Izmena</h3>
+            <form  [formGroup]="editForm" novalidate (ngSubmit)="onUpdate()">
+                <div class="form-group" >
+                    <label>ID:</label>
+                    <input class="form-control" formControlName="IdE" type="number" readonly>
+                </div>
+               <br/>
+                <div class="form-group">
+                    <label>Dobavljač:</label>
+                    <select class="form-control" formControlName="IdDobavljacaE">
+                      <option *ngFor="let s of suppliers" [ngValue]="s.IdDobavljaca">
+                        {{s.IdDobavljaca}}
+                      </option>
+                    </select>
+                </div><br/>
+                <div class="form-group">
+                    <label>Naziv artikla:</label>
+                    <input class="form-control" formControlName="nazivE" type="text">
+                </div>
+                <div *ngIf="editForm.controls['nazivE'].invalid && (editForm.controls['nazivE'].dirty
+                || editForm.controls['nazivE'].touched)" class="alert alert-danger">
+                <div *ngIf="editForm.controls['nazivE'].errors.required">
+                     Artikal je neophodan.
+                 </div>
+                </div><br/>
+                <div class="form-group">
+                    <label>Količina:</label>
+                    <input class="form-control" formControlName="kolicinaE" type="number">
+                </div><br/>
+                <div class="form-group">
+                    <label>Datum:</label>
+                    <input class="form-control" formControlName="datumE" type="text" readonly>
+                </div><br/>
+                <div class="form-group">
+                    <label>Cena:</label>
+                    <input class="form-control" formControlName="cenaE" type="number">
+                </div><br/>
+                <button type="submit" class="btn btn-success" [disabled]="editLoad">
+                    <span *ngIf="editLoad" class="spinner-border spinner-border-sm mr-1"></span>
+                    Sačuvaj
+                </button>
+            </form>
+        </div> 
+
+        </div>
+
+
+    <div class=" col-sm-12 col-md-8 col-12" style="margin-top: 2%;">
+        <div class="container">
+        <table class="table" style="width: 100%; background-color: pink;">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col" style="text-align: center;">ID
+                </th>
+                <th scope="col" style="text-align: center;">Dobavljač</th>
+                <th scope="col" style="text-align: center;">Artikal</th>
+                <th scope="col" style="text-align: center;">Količina</th>
+                <th scope="col" style="text-align: center;">Datum</th>
+                <th scope="col" style="text-align: center;">Cena</th>
+                <th>Izmena</th>
+                <th>Brisanje</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let supp of supplies">
+                    <th scope="row" style="text-align: center;">{{supp.Id}}</th>
+                    <td style="text-align: center;">{{supp.IdDobavljaca}}</td>
+                    <td style="text-align: center;">{{supp.naziv}}</td>
+                    <td style="text-align: center;">{{supp.kolicina}}</td>
+                    <td style="text-align: center;">{{supp.datum}}</td>
+                    <td style="text-align: center;">{{supp.cena}}</td>
+                    <td><button class="btn btn-success" (click)="selectOne(supp)">Izmeni</button></td>
+                    <td><button class="btn btn-danger" (click)="deleteOne(supp.Id)">Obriši</button></td>
+                </tr>
+             
+            </tbody>
+          </table>
+    </div>
+
+</div>
